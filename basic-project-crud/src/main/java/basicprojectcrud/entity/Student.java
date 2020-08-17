@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,6 +31,6 @@ public class Student {
 	private String name;
 
 	@Column(name = "PHONE_NUMBER")
-	@NotNull(message = "Phone Number must be non null.")
-	private Integer phoneNumber;
+	@Pattern(regexp = "(^$|[0-9]{10})")
+	private String phoneNumber;
 }

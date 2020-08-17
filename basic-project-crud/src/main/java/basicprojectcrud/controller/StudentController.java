@@ -3,6 +3,7 @@ package basicprojectcrud.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +29,7 @@ public class StudentController {
 	}
 
 	@GetMapping("/student")
-	public Student getStudent(@RequestParam Long studentId) {
+	public Student getStudent(@RequestParam @NotNull Long studentId) {
 		Student fetchedStudent = studentService.getStudentService(studentId);
 		return fetchedStudent;
 	}
@@ -46,7 +47,7 @@ public class StudentController {
 	}
 
 	@DeleteMapping("/student")
-	public String deleteStudent(@RequestParam Long studentId) {
+	public String deleteStudent(@RequestParam @NotNull Long studentId) {
 		studentService.deleteStudentService(studentId);
 		return "Deleted Successfully";
 	}
