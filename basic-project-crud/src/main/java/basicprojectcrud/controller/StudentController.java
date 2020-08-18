@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +43,9 @@ public class StudentController {
 
 	@PutMapping("/student")
 	public Student updateStudent(@Valid @RequestBody Student student) {
+		if(student.getStudentId() == null) {
+			throw new InvalidDataAccessApiUsageException("Student Id is missing in request body.");
+		}
 		Student updatedStudent = studentService.updateStudentService(student);
 		return updatedStudent;
 	}
